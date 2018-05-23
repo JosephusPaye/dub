@@ -1,0 +1,16 @@
+{
+  "name": "dub",
+  "version": "0.1.0",
+  "description": "Quickly and easily rename multiple files from the command line.",
+  "main": "index.js",
+  "repository": "https://github.com/JosephusPaye/dub",
+  "author": "Josephus Paye II",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "change-case": "^3.0.2",
+    "glob-to-regexp": "https://github.com/JosephusPaye/glob-to-regexp",
+    "inquirer": "^5.2.0",
+    "sade": "^1.4.1"
+  }
+}
