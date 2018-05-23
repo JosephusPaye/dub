@@ -1,15 +1,16 @@
-const fs = require('fs');
-const path = require('path');
 const chalk = require('chalk');
 const globToRegex = require('glob-to-regexp');
-const changeCase = require('change-case');
+const inquirer = require('inquirer');
 
-async function rename(pattern, template, opts) {
+const { getFilenames, rename, renameAll } = require('../support/fs');
+const { getVariables, compile } = require('../support/template');
+
+async function renameCommand(pattern, template, opts) {
     const variables = getVariables(template);
     let patternRegex;
 
     try {
-        patternRegex = opts.regex ? new RegExp(pattern) : globToRegex(pattern);
+        patternRegex = opts.regex ? new RegExp(pattern) : globToRegex(pattern, { extended: true });
     } catch (err) {
         console.log('Invalid src pattern');
         return;
@@ -23,118 +24,43 @@ async function rename(pattern, template, opts) {
 
             return {
                 from: file,
-                to: evaluate(template, variables, matches, index)
+                to: compile(template, variables, matches, index + 1)
             };
         });
 
     if (transformations.length === 0) {
-        console.log(`No files found matching pattern: \`${pattern}\``);
+        console.log(`No matching files found in the current directory`);
         return;
     }
 
-    // console.log(`> renaming from \`${pattern}\` to \`${template}\``);
-    // console.log('> regex: ' + patternRegex.toString());
-    // console.log(`> files: ${'\n  ' + files.join('\n  ')}`);
-    // console.log('\n> transformations:\n');
-
-    const output = [];
-
-    transformations.forEach(f => {
-        output.push(chalk.red('- ' + f.from) + '\n' + chalk.green('+ ' + f.to));
+    const diff = transformations.map(file => {
+        return chalk.red('- ' + file.from) + '\n' + chalk.green('+ ' + file.to);
     });
 
-    console.log(output.join('\n\n'));
-}
+    // Print the diff
+    console.log(diff.join('\n\n'));
 
-function getFilenames(dir) {
-    return new Promise((resolve, reject) => {
-        fs.readdir(dir, (err, names) => {
-            if (err) {
-                reject(err);
-            }
-
-            const files = names.filter(name => {
-                return fs.statSync(path.join(dir, name)).isFile();
-            });
-
-            resolve(files);
-        });
-    });
-}
-
-const VARIABLES_REGEX = /{ *(\d*i) *}|{ *(\d+) *}|{ *(\d+:[ults]) *}/g;
-
-function getVariables(string) {
-    const matches = string.match(VARIABLES_REGEX);
-
-    if (!matches) {
-        return [];
+    // Abort if this is a dry run
+    if (opts.dry) {
+        return;
     }
 
-    return matches.map(match => {
-        const inner = match.substring(1, match.length - 1).trim();
+    const question = {
+        type: 'confirm',
+        name: 'renameConfirmed',
+        message: 'Perform the renames shown above?',
+        default: false
+    };
 
-        // Handle counter variables
-        if (inner.endsWith('i')) {
-            return {
-                type: 'counter',
-                width: inner.length,
-                match
-            };
-        }
+    console.log('\n');
 
-        const variable = {
-            type: 'variable',
-            name: inner,
-            match
-        };
+    const { renameConfirmed } = await inquirer.prompt([question]);
 
-        if (inner.indexOf(':') == -1) {
-            variable.hasTransform = false;
-            return variable;
-        }
-
-        const [name, transform] = inner.split(':');
-
-        const applyTransform = transform === 'u'
-            ? changeCase.upperCase
-            : transform === 'l'
-                ? changeCase.lowerCase
-                : transform === 't'
-                    ? changeCase.titleCase
-                    : changeCase.sentenceCase;
-
-        return Object.assign(variable, {
-            name,
-            transform,
-            applyTransform,
-            hasTransform: true
+    if (renameConfirmed) {
+        renameAll(transformations, process.cwd()).then(() => {
+            console.log('Files renamed');
         });
-    });
+    }
 }
 
-function evaluate(template, variables, matches, index) {
-    let output = template;
-
-    variables.forEach(variable => {
-        // Expand counters
-        if (variable.type === 'counter') {
-            output = output.replace(variable.match, String(index + 1).padStart(variable.width, '0'));
-            return;
-        }
-
-        // Expand variables
-        if (variable.type === 'variable') {
-            const value = matches[Number(variable.name)];
-
-            if (value) {
-                const transformed = variable.hasTransform ? variable.applyTransform(value) : value;
-                output = output.replace(variable.match, transformed);
-            }
-        }
-    });
-
-    return output;
-}
-
-module.exports = rename;
+module.exports = renameCommand;
