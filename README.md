@@ -133,18 +133,18 @@ The following cases are available:
 
 | Case       | Description                                                                                                                                                          |
 | :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `camel`    | Changes the text into a string with the separator denoted by the next word capitalized. <br>Example: `Brienne Of Tarth` ⇒ `brienneOfTarth`                           |
-| `capital`  | Changes the text into a space separated string with each word capitalized. <br>Example: `Brienne Of Tarth` ⇒ `Brienne Of Tarth`                                      |
-| `dot`      | Changes the text into a lower case string with a period between words. <br>Example: `Brienne Of Tarth` ⇒ `brienne.of.tarth`                                          |
-| `header`   | Changes the text into a dash separated string of capitalized words. <br>Example: `Brienne Of Tarth` ⇒ `Brienne-Of-Tarth`                                             |
-| `lower`    | Changes the text to lower case. <br>Example: `Brienne Of Tarth` ⇒ `brienne of tarth`                                                                                 |
-| `pascal`   | Changes the text into a string of capitalized words without separators. <br>Example: `Brienne Of Tarth` ⇒ `BrienneOfTarth`                                           |
-| `sentence` | Changes the text into lower case with spaces between words, then capitalizes the string. <br>Example: `Brienne Of Tarth` ⇒ `Brienne of tarth`                        |
-| `snake`    | Changes the text into a lower case string with underscores between words. <br>Example: `Brienne Of Tarth` ⇒ `brienne_of_tarth`                                       |
-| `sponge`   | Changes the text to sponge case (random capitalization). <br>Example: `Brienne Of Tarth` ⇒ `bRIEnNE oF TarTh`                                                        |
-| `swap`     | Changes the text by changing lower case letters into upper case, and vice-versa. <br>Example: `Brienne Of Tarth` ⇒ `bRIENNE oF tARTH`                                |
-| `title`    | Changes the text to [title case](https://en.wikipedia.org/wiki/Letter_case#Title_case) following English rules. <br>Example: `Brienne Of Tarth` ⇒ `Brienne Of Tarth` |
-| `upper`    | Changes the text to upper case. <br>Example: `Brienne Of Tarth` ⇒ `BRIENNE OF TARTH`                                                                                 |
+| `camel`    | Changes the text into a string with the separator denoted by the next word capitalized. <br>Example: `Brienne Of Tarth` → `brienneOfTarth`                           |
+| `capital`  | Changes the text into a space separated string with each word capitalized. <br>Example: `Brienne Of Tarth` → `Brienne Of Tarth`                                      |
+| `dot`      | Changes the text into a lower case string with a period between words. <br>Example: `Brienne Of Tarth` → `brienne.of.tarth`                                          |
+| `header`   | Changes the text into a dash separated string of capitalized words. <br>Example: `Brienne Of Tarth` → `Brienne-Of-Tarth`                                             |
+| `lower`    | Changes the text to lower case. <br>Example: `Brienne Of Tarth` → `brienne of tarth`                                                                                 |
+| `pascal`   | Changes the text into a string of capitalized words without separators. <br>Example: `Brienne Of Tarth` → `BrienneOfTarth`                                           |
+| `sentence` | Changes the text into lower case with spaces between words, then capitalizes the string. <br>Example: `Brienne Of Tarth` → `Brienne of tarth`                        |
+| `snake`    | Changes the text into a lower case string with underscores between words. <br>Example: `Brienne Of Tarth` → `brienne_of_tarth`                                       |
+| `sponge`   | Changes the text to sponge case (random capitalization). <br>Example: `Brienne Of Tarth` → `bRIEnNE oF TarTh`                                                        |
+| `swap`     | Changes the text by changing lower case letters into upper case, and vice-versa. <br>Example: `Brienne Of Tarth` → `bRIENNE oF tARTH`                                |
+| `title`    | Changes the text to [title case](https://en.wikipedia.org/wiki/Letter_case#Title_case) following English rules. <br>Example: `Brienne Of Tarth` → `Brienne Of Tarth` |
+| `upper`    | Changes the text to upper case. <br>Example: `Brienne Of Tarth` → `BRIENNE OF TARTH`                                                                                 |
 
 ## Licence
 
