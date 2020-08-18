@@ -21,7 +21,7 @@ dub "*.pdf" "{1:title}"
 ```
 
 | Before                                                  | After                                                   |
-| ------------------------------------------------------- | ------------------------------------------------------- |
+| :------------------------------------------------------ | :------------------------------------------------------ |
 | `final_projectReport.pdf`                               | `Final Project Report.pdf`                              |
 | `The_School_Based_Lived_Experiences_of_Adolescents.pdf` | `The School Based Lived Experiences of Adolescents.pdf` |
 
@@ -34,7 +34,7 @@ dub "*.jpeg" "{1}.jpg"
 ```
 
 | Before                                       | After                                       |
-| -------------------------------------------- | ------------------------------------------- |
+| :------------------------------------------- | :------------------------------------------ |
 | `WhatsApp-Image-2019-05-07-at-16.01.31.jpeg` | `WhatsApp-Image-2019-05-07-at-16.01.31.jpg` |
 | `twitter-avatar.jpeg`                        | `twitter-avatar.jpg`                        |
 
@@ -45,7 +45,7 @@ dub "*.srt" "{1}.eng.srt"
 ```
 
 | Before                                          | After                                               |
-| ----------------------------------------------- | --------------------------------------------------- |
+| :---------------------------------------------- | :-------------------------------------------------- |
 | `Westworld - S03E03 - The Absence of Field.srt` | `Westworld - S03E03 - The Absence of Field.eng.srt` |
 | `Westworld - S03E08 - Crisis Theory.srt`        | `Westworld - S03E08 - Crisis Theory.eng.srt`        |
 
@@ -56,7 +56,7 @@ dub "*" "{00i} - {1}"
 ```
 
 | Before             | After                    |
-| ------------------ | ------------------------ |
+| :----------------- | :----------------------- |
 | `Report 2016.xlsx` | `001 - Report 2016.xlsx` |
 | `Report 2017.xlsx` | `002 - Report 2017.xlsx` |
 | `Report 2018.xlsx` | `003 - Report 2018.xlsx` |
@@ -68,7 +68,7 @@ dub "*draft*" "{1}{2}"
 ```
 
 | Before                                | After                           |
-| ------------------------------------- | ------------------------------- |
+| :------------------------------------ | :------------------------------ |
 | `Quarterly earnings draft report.pdf` | `Quarterly earnings report.pdf` |
 | `Assignment 3 draft.docx`             | `Assignment 3.docx`             |
 
@@ -112,7 +112,7 @@ In a regular expression, the result of capturing groups can be substituted as a 
 For example, given a file named `the best way to predict the future is to invent it.txt`, a `<from>` pattern of `* best * invent *` will match the file and capture the following variables:
 
 | Name | Value                             |
-| ---- | --------------------------------- |
+| :--- | :-------------------------------- |
 | `1`  | `the`                             |
 | `2`  | `way to predict the future is to` |
 | `3`  | `it.txt`                          |
@@ -132,7 +132,7 @@ The casing of matched variables (excluding counter variables) can be changed. Th
 The following cases are available:
 
 | Case       | Description                                                                                                                                                          |
-| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `camel`    | Changes the text into a string with the separator denoted by the next word capitalized. <br>Example: `Brienne Of Tarth` ⇒ `brienneOfTarth`                           |
 | `capital`  | Changes the text into a space separated string with each word capitalized. <br>Example: `Brienne Of Tarth` ⇒ `Brienne Of Tarth`                                      |
 | `dot`      | Changes the text into a lower case string with a period between words. <br>Example: `Brienne Of Tarth` ⇒ `brienne.of.tarth`                                          |
