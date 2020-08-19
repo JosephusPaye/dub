@@ -15,6 +15,7 @@ exports.camelCase = camelCase;
 exports.capitalCase = capitalCase;
 exports.dotCase = dotCase;
 exports.headerCase = headerCase;
+exports.kebabCase = kebabCase;
 exports.lowerCase = lowerCase;
 exports.pascalCase = pascalCase;
 exports.sentenceCase = sentenceCase;
@@ -40,4 +41,13 @@ function upperCase(string) {
  */
 function lowerCase(string) {
     return string.toLocaleLowerCase();
+}
+
+/**
+ * Convert the given string to kebab case.
+ *
+ * @param {string} string The string to convert to kebab case
+ */
+function kebabCase(string) {
+    return headerCase(string).toLowerCase();
 }

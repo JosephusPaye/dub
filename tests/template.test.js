@@ -136,7 +136,11 @@ test('getVariables() extracts transformed variables', () => {
 
     const variables = getVariables(template);
 
-    assert.is(Object.keys(changeCase).length, variables.length, 'Got the expected number of variables');
+    assert.is(
+        Object.keys(changeCase).length,
+        variables.length,
+        'Got the expected number of variables'
+    );
 
     let j = 0;
     for (const key of Object.keys(changeCase)) {
@@ -145,8 +149,8 @@ test('getVariables() extracts transformed variables', () => {
             variables[j],
             {
                 type: 'transformed',
-                name: `${j+1}`,
-                match: `{${j+1}:${transform}}`,
+                name: `${j + 1}`,
+                match: `{${j + 1}:${transform}}`,
                 transform,
                 applyTransform: changeCase[key],
             },
@@ -165,7 +169,7 @@ test('compile() calls onUnmatchedVariable() when an variable without a matching 
             name: '3',
             match: '{3:upper}',
             transform: 'upper',
-            applyTransform: changeCase.upperCase
+            applyTransform: changeCase.upperCase,
         },
     ];
 
@@ -238,6 +242,7 @@ test('compile() expands transformed variables', () => {
         capital: 'Brienne Of Tarth',
         dot: 'brienne.of.tarth',
         header: 'Brienne-Of-Tarth',
+        kebab: 'brienne-of-tarth',
         lower: 'brienne of tarth',
         pascal: 'BrienneOfTarth',
         sentence: 'Brienne of tarth',
@@ -274,7 +279,11 @@ test('compile() expands transformed variables', () => {
                 'correctly transforms ' + transform + ' case'
             );
         } else {
-            console.log(compiled);
+            assert.not.equal(
+                compiled,
+                variableValues[0],
+                'randomizes casing with sponge case'
+            );
         }
     }
 });

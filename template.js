@@ -10,7 +10,7 @@ for (const key of Object.keys(changeCase)) {
 }
 
 // https://regexr.com/5aaij
-const VARIABLES_REGEX = /{ *(0*i) *}|{ *(\d+) *}|{ *(\d+:(camel|capital|dot|header|lower|pascal|sentence|snake|sponge|swap|title|upper)) *}/g;
+const VARIABLES_REGEX = /{ *(0*i) *}|{ *(\d+) *}|{ *(\d+:(camel|capital|dot|header|kebab|lower|pascal|sentence|snake|sponge|swap|title|upper)) *}/g;
 
 /**
  * Extract the name and types of the variables in the given template.
