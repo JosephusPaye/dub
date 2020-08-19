@@ -17,7 +17,7 @@ The following examples change all matching files in the current directory.
 ### Rename all PDF files to [title case](https://en.wikipedia.org/wiki/Letter_case#Title_case)
 
 ```sh
-dub "*.pdf" "{1:title}"
+dub "*.pdf" "{1:title}.pdf"
 ```
 
 | Before                                                  | After                                                   |
@@ -100,10 +100,9 @@ Examples
 
 `<from>` defines a pattern that is used to match files to rename. The pattern can be a [glob](<https://en.wikipedia.org/wiki/Glob_(programming)>) or [JavaScript regular expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions) (using the `--regex` option).
 
-In a glob, the match of each wildcard is captured, and can be substituted as a variable in the `<to>` template. For example, the
-pattern `*-*.txt` will match all text files with a hyphen in their name. Everything before the hyphen will be captured as the variable `1`, and everything after will be captured as `2`. These can be substituted as `{1}` and `{2}` respectively.
+When using a glob, the match of each wildcard is captured, and can be substituted as a variable in the `<to>` template. For example, the pattern `*-*.txt` will match all text files with a hyphen in their name. Everything before the hyphen will be captured as the variable `1`, and everything after will be captured as `2`. These can be substituted as `{1}` and `{2}` respectively in the template.
 
-In a regular expression, the result of capturing groups can be substituted as a variables in the `<to>` template. The result first capturing group will be the variable `1`, the second will be `2`, the third will be `3`, etc. These can be substituted as `{1}`, `{2}`, `{3}`, etc respectively.
+When using a regular expression, the result of capturing groups can be substituted as a variables in the `<to>` template. The result of the first capturing group will be the variable `1`, the second will be `2`, the third will be `3`, etc. These can be substituted as `{1}`, `{2}`, `{3}`, etc respectively in the template.
 
 ### `<to>` template
 
@@ -117,17 +116,17 @@ For example, given a file named `the best way to predict the future is to invent
 | `2`  | `way to predict the future is to` |
 | `3`  | `it.txt`                          |
 
-Using the above with the `<to>` template `{1} easiest {2} prevent {3}` will result in the new name `the easiest way to predict the future is to prevent it`.
+Using the above with the `<to>` template `{1} easiest {2} prevent {3}` will result in the new name `the easiest way to predict the future is to prevent it.txt`.
 
 #### Counter variables
 
 The special variable `i` can be used to insert a counter, which will start at 1 and go up to the number of files being renamed. When using the counter variable, the letter `i` can be prefixed with any number of zeroes to indicate that the counter should be zero-padded.
 
-For example the template `{00i}` will produce `001`, `002`, `003`, ..., `010`, `011`, `012`, ..., `100`, `101`, `102`, etc.
+For example, the template `{00i}` will produce `001`, `002`, `003`, ..., `010`, `011`, `012`, ..., `100`, `101`, `102`, etc.
 
 #### Case transformation of variables
 
-The casing of matched variables (excluding counter variables) can be changed. This is done by adding a `:` followed by the name of the case to change to. For example `{1:upper}` will change the case of the variable `1` to upper case.
+The casing of matched variables (excluding counter variables) can be changed. This is done by adding a `:` followed by the name of the case to change to. For example `{1:upper}` will change the value of the variable `1` to upper case.
 
 The following cases are available:
 
@@ -137,6 +136,7 @@ The following cases are available:
 | `capital`  | Changes the text into a space separated string with each word capitalized. <br>Example: `Brienne Of Tarth` → `Brienne Of Tarth`                                      |
 | `dot`      | Changes the text into a lower case string with a period between words. <br>Example: `Brienne Of Tarth` → `brienne.of.tarth`                                          |
 | `header`   | Changes the text into a dash separated string of capitalized words. <br>Example: `Brienne Of Tarth` → `Brienne-Of-Tarth`                                             |
+| `kebab`   | Changes the text into a dash separated string of lower cased words. <br>Example: `Brienne Of Tarth` → `brienne-of-tarth`                                             |
 | `lower`    | Changes the text to lower case. <br>Example: `Brienne Of Tarth` → `brienne of tarth`                                                                                 |
 | `pascal`   | Changes the text into a string of capitalized words without separators. <br>Example: `Brienne Of Tarth` → `BrienneOfTarth`                                           |
 | `sentence` | Changes the text into lower case with spaces between words, then capitalizes the string. <br>Example: `Brienne Of Tarth` → `Brienne of tarth`                        |
