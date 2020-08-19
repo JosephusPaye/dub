@@ -1,6 +1,6 @@
 {
   "name": "@josephuspaye/dub",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Quickly rename multiple files from the command line, using a glob or regular expression.",
   "main": "index.js",
   "repository": "https://github.com/JosephusPaye/dub",
